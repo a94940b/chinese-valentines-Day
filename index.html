@@ -4,10 +4,11 @@
 <head>
   <meta http-equiv="Content-type" content="text/html" charset="UTF-8">
   <title>小冬同学七夕快乐</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="pageA.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/pageA.css">
   <script src="lib/jquery-3.3.1.min.js"></script>
-  <script src="Swipe.js"></script>
+  <script src="lib/jQueryTransit.js"></script>
+  <script src="./js/Swipe.js"></script>
 </head>
 <style type="text/css">
   .charector {
@@ -129,6 +130,15 @@
     $('button').click(()=>{
       $boy.addClass('slowWalk');
     });
+
+    /**
+     * 绑定一个点击事件，开始走路
+     */
+    $("button").click(function() {
+      $boy.transition({
+        'left': $("#content").width() + 'px',
+      },10000,'linear');
+    })
   </script>
 </body>
 

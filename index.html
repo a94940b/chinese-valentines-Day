@@ -44,6 +44,14 @@
     li:nth-child(3) {
       background: yellow;
     }
+    button {
+      width: 100px;
+      height: 50px;
+    }
+    .button {
+      position: absolute;
+      bottom: 0;
+    }
   </style>
 </head>
 
@@ -57,6 +65,9 @@
       <!-- 画面3 -->
       <li>页面3</li>
     </ul>
+    <div class="button">
+      <button>点击切换页面</button>
+    </div>
   </div>
   <script type="text/javascript">
     var container = $("#content");
@@ -83,6 +94,18 @@
         height: height + 'px'
       })
       console.log(slide.text());
+    })
+
+    // 绑定一个事件，通过click触发
+    $('button').click(()=>{
+      element.css({
+        //在5秒的时间内，移动x的位置，为2个页单位
+        'transition-timing-function': 'linear',
+        'transition-duration': '5000ms',
+        //设置页面X轴移动
+        // 'transform': 'translate3d(-' + (width * 2) + ' px,0px,0px)'
+        'transform': `translate3d(-(${width} * 2)px,0px,0px)`
+      })
     })
   </script>
 </body>

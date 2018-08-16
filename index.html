@@ -4,55 +4,9 @@
 <head>
   <meta http-equiv="Content-type" content="text/html" charset="UTF-8">
   <title>小冬同学七夕快乐</title>
+  <link rel="stylesheet" href="style.css">
   <script src="lib/jquery-3.3.1.min.js"></script>
-  <style type="text/css">
-    * {
-      padding: 0;
-      margin: 0;
-    }
-    ul,
-    li {
-      list-style-type: none;
-    }
-    /*进入主体部分*/
-
-    #content {
-      position: absolute;
-      width: 60%;
-      height: 60%;
-      top: 20%;
-      left: 20%;
-      overflow: hidden;
-      border: 1px solid #ccc;
-      background-color: #eee;
-    }
-    .content-wrap {
-      position: relative;
-    }
-    .content-wrap > li {
-      float: left;
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-      height: 100%;
-      background: #CAE1FF;
-      color: red;
-    }
-    li:nth-child(2) {
-      background: pink;
-    }
-    li:nth-child(3) {
-      background: yellow;
-    }
-    button {
-      width: 100px;
-      height: 50px;
-    }
-    .button {
-      position: absolute;
-      bottom: 0;
-    }
-  </style>
+  <script src="Swipe.js"></script>
 </head>
 
 <body>
@@ -70,42 +24,14 @@
     </div>
   </div>
   <script type="text/javascript">
-    var container = $("#content");
-    //获取第一个子节点
-    var element = container.find(":first");
-    // li页面数量
-    var slides = element.find("li");
-    console.log(slides);
-    // 获取容器尺寸
-    var width = container.width();
-    var height = container.height();
-    // 设置li页面总宽度
-    element.css({
-      width: (slides.length * width) + 'px',
-      height: height + 'px'
-    });
-    // 设置每一个页面li的宽度
-    $.each(slides, (index)=>{
-      // 获取到每一个li元素
-      var slide = slides.eq(index);
-      // 设置每一个li元素的尺寸
-      slide.css({
-        width: width + 'px',
-        height: height + 'px'
-      })
-      console.log(slide.text());
-    })
-
+    
+    // 调用swipe接口
+    var swipe = Swipe($("#content"));
     // 绑定一个事件，通过click触发
     $('button').click(()=>{
-      element.css({
-        //在5秒的时间内，移动x的位置，为2个页单位
-        'transition-timing-function': 'linear',
-        'transition-duration': '5000ms',
-        //设置页面X轴移动
-        // 'transform': 'translate3d(-' + (width * 2) + ' px,0px,0px)'
-        'transform': `translate3d(-(${width} * 2)px,0px,0px)`
-      })
+      
+      // 调用swipe接口
+      swipe.scrollTo($("#content").width() * 2, 5000);
     })
   </script>
 </body>

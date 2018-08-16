@@ -11,67 +11,11 @@
   <script src="./js/Swipe.js"></script>
 </head>
 <style type="text/css">
-  .charector {
-    width: 151px;
-    height: 291px;
-    background: url(images/boy.png) 0px -291px no-repeat;
-    position: absolute;
-    /*设置一个元素的坐标*/
-    left: 6%;
-    top: 55%;
-  }
-  .slowWalk {
-    /*填入动画样式规则*/
-    /*规定@keyframes动画的名称*/
-     -webkit-animation-name: person-slow; 
-    /*规定动画完成一个周期所花费的秒或毫秒。默认是 0*/
-    -webkit-animation-duration: 950ms;
-    /*规定动画被播放的次数。默认是 1。 infinite(循环播放)*/
-    -webkit-animation-iteration-count: infinite;
-    /*动画切换的方式是一帧一帧的改变*/
-    -webkit-animation-timing-function: steps(1, start);
-    -moz-animation-name: person-slow;
-    -moz-animation-duration: 950ms;
-    -moz-animation-iteration-count: infinite;
-    -moz-animation-timing-function: steps(1, start)
-  }
-  /*普通慢走*/
-
-  @-webkit-keyframes person-slow {
-    0% {
-      background-position: -0px -291px;
-    }
-    25% {
-      background-position: -602px -0px;
-    }
-    50% {
-      background-position: -302px -291px;
-    }
-    75% {
-      background-position: -151px -291px;
-    }
-    100% {
-      background-position: -0px -291px;
-    }
-  }
-
-  @-moz-keyframes person-slow {
-    0% {
-      background-position: -0px -291px;
-    }
-    25% {
-      background-position: -602px -0px;
-    }
-    50% {
-      background-position: -302px -291px;
-    }
-    75% {
-      background-position: -151px -291px;
-    }
-    100% {
-      background-position: -0px -291px;
-    }
-  }
+/* 人物暂停 */
+.pauseWalk {
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+}
 </style>
 
 <body>
@@ -93,6 +37,7 @@
     <div id="boy" class="charector"></div>
     <div class="button">
       <button>点击开始动画</button>
+      <button>暂停</button>
     </div>
   </div>
   <script type="text/javascript">
@@ -132,12 +77,22 @@
     });
 
     /**
-     * 绑定一个点击事件，开始走路
+     * 开始走路
      */
-    $("button").click(function() {
+    $("button:first").click(function() {
       $boy.transition({
         'left': $("#content").width() + 'px',
       },10000,'linear');
+    });
+    
+    // 暂停
+    $("button:last").click(function(){
+      var left = $boy.css('left');
+      // 强制做了一个改变目标left的处理
+      // 动画是要运行10秒,所以此时动画还是没有结束的
+      $boy.css('left',left);
+      // 增加暂停的样式
+      $boy.addClass('pauseWalk');
     })
   </script>
 </body>

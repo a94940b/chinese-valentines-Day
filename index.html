@@ -6,6 +6,8 @@
   <title>小冬同学七夕快乐</title>
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/pageA.css">
+  <script src="./js/Swipe.js"></script>
+  <script src="./js/BoyWalk.js"></script>
 </head>
 <style type="text/css">
   /* 人物暂停 */
@@ -53,28 +55,17 @@
         boy.walkTo(2000, 0.2)
           .then(function() {
             // 第一次完成走路
-            boy.setColor('red')
+            // 开始页面滚动
+            scrollTo(1, 5000);
           })
           .then(function() {
             // 第二次走
-            return boy.walkTo(2000, 0.4)
-          }).then(function() {
-            // 第二次走路完成
-            boy.setColor('yellow')
-          })
-          .then(function() {
-            // 第三次走
-            return boy.walkTo(2000, 0.6)
-          }).then(function() {
-            // 第三次走路完成
-            boy.setColor('blue')
+            return boy.walkTo(2000, 0.5)
           });
-      })
+      });
     })
   </script>
-  <script src="./js/Swipe.js"></script>
-  <script src="./js/qixi.js"></script>
-  <script src="./js/BoyWalk.js"></script>
+
 </body>
 
 </html>

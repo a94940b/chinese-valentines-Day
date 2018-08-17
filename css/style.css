@@ -97,3 +97,13 @@ button {
     background-position: -0px -291px;
   }
 }
+
+
+/**
+ * 人物暂停
+ */
+
+.pauseWalk {
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+}

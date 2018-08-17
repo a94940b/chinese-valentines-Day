@@ -50,7 +50,7 @@ function startRun(options, runTime) {
   // 恢复走路
   restoreWalk();
   // 运动的属性
-  $boy.transition(options, runTime, 'linear');
+  $boy.transition(options, runTime, 'linear', function(){});
   return dfdPlay;
 }
 

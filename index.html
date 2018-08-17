@@ -7,15 +7,14 @@
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/pageA.css">
 </head>
-
 <style type="text/css">
-/* 人物暂停 */
-.pauseWalk {
+  /* 人物暂停 */
+
+  .pauseWalk {
     -webkit-animation-play-state: paused;
     -moz-animation-play-state: paused;
-}
+  }
 </style>
-
 <script src="lib/jquery-3.3.1.min.js"></script>
 <script src="lib/jQueryTransit.js"></script>
 
@@ -42,17 +41,40 @@
   </div>
   <script type="text/javascript">
     $(function() {
-      //开始
+      var container = $("#content");
+      var swipe = Swipe(container);
+
+      // 小孩走路
+      var boy = BoyWalk();
+
+      // 开始
       $("button:first").click(function() {
-        // 10秒钟走到0.5，也就是页面中间位置
-        let distX = calculateDist('x', 0.5);
-        let distY = calculateDist('y', 0.5);
-        walkRun(10000, distX, distY);
+        //第一次走
+        boy.walkTo(2000, 0.2)
+          .then(function() {
+            // 第一次完成走路
+            boy.setColor('red')
+          })
+          .then(function() {
+            // 第二次走
+            return boy.walkTo(2000, 0.4)
+          }).then(function() {
+            // 第二次走路完成
+            boy.setColor('yellow')
+          })
+          .then(function() {
+            // 第三次走
+            return boy.walkTo(2000, 0.6)
+          }).then(function() {
+            // 第三次走路完成
+            boy.setColor('blue')
+          });
       })
     })
   </script>
   <script src="./js/Swipe.js"></script>
   <script src="./js/qixi.js"></script>
+  <script src="./js/BoyWalk.js"></script>
 </body>
 
 </html>
